@@ -1,0 +1,10 @@
+{
+    "folders": [
+      { "path": "backend" },
+      { "path": "frontend" }
+    ],
+    "settings": {
+      "editor.formatOnSave": true,
+"python.pythonPath": "/Users/jorgeluisdevera/PycharmProjects/cive_python/backend/.venv/bin/python"
+    }
+  }
