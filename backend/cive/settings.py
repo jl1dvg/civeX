@@ -22,17 +22,22 @@ INSTALLED_APPS = [
     'usuarios',  # Tu app personalizada
     'corsheaders',
     'pacientes',
+    'procedimientos',
+    'consultas',
+    'protocolos',
+    'plantillas',
+    'inventario',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # Quita 'django.middleware.csrf.CsrfViewMiddleware' si ya está usando @csrf_exempt
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Deja esto después del resto
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'cive.urls'
@@ -104,7 +109,43 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Origen del frontend
+CORS_ALLOW_ALL_ORIGINS = True  # Permite todas las solicitudes externas (para pruebas)
+
+# Si deseas limitarlo a dominios específicos en producción:
+# CORS_ALLOWED_ORIGINS = [
+#    "chrome-extension://<TU_EXTENSION_ID>",
+# "http://127.0.0.1:3000",
+# "http://localhost:3000",
+# ]
+
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+    "PATCH",
+    "DELETE",
+    "OPTIONS",
 ]
+
+CORS_ALLOW_HEADERS = [
+    "Authorization",
+    "Content-Type",
+]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'INFO',  # Cambia DEBUG a INFO para reducir los mensajes
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'INFO',  # Reduce el nivel de logging aquí
+            'propagate': False,
+        },
+    },
+}

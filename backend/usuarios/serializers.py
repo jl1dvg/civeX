@@ -1,3 +1,6 @@
+from rest_framework import serializers  # Asegúrate de importar esto
+from usuarios.models import CustomUser  # Importa el modelo necesario
+
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser

@@ -1,0 +1,36 @@
+from django.db import models
+from pacientes.models import PatientData
+
+class ProtocoloData(models.Model):
+    hc_number = models.CharField(max_length=20, null=True, blank=True)  # Relación con patient_data
+    form_id = models.CharField(max_length=50, null=True, blank=True)  # Relación con ProcedimientoProyectado
+    procedimiento_id = models.CharField(max_length=50, null=True, blank=True)
+    fecha = models.DateField(null=True, blank=True)
+    cirujano_1 = models.CharField(max_length=100, null=True, blank=True)
+    instrumentista = models.CharField(max_length=100, null=True, blank=True)
+    cirujano_2 = models.CharField(max_length=100, null=True, blank=True)
+    circulante = models.CharField(max_length=100, null=True, blank=True)
+    primer_ayudante = models.CharField(max_length=100, null=True, blank=True)
+    anestesiologo = models.CharField(max_length=100, null=True, blank=True)
+    segundo_ayudante = models.CharField(max_length=100, null=True, blank=True)
+    ayudante_anestesia = models.CharField(max_length=100, null=True, blank=True)
+    tercer_ayudante = models.CharField(max_length=100, null=True, blank=True)
+    otros = models.CharField(max_length=255, null=True, blank=True)
+    membrete = models.TextField(null=True, blank=True)
+    dieresis = models.TextField(null=True, blank=True)
+    exposicion = models.TextField(null=True, blank=True)
+    hallazgo = models.TextField(null=True, blank=True)
+    operatorio = models.TextField(null=True, blank=True)
+    complicaciones_operatorio = models.TextField(null=True, blank=True)
+    datos_cirugia = models.TextField(null=True, blank=True)
+    procedimientos = models.JSONField(null=True, blank=True)
+    lateralidad = models.CharField(max_length=50, null=True, blank=True)
+    fecha_inicio = models.DateField(null=True, blank=True)
+    hora_inicio = models.TimeField(null=True, blank=True)
+    fecha_fin = models.DateField(null=True, blank=True)
+    hora_fin = models.TimeField(null=True, blank=True)
+    tipo_anestesia = models.CharField(max_length=50, null=True, blank=True)
+    diagnosticos = models.JSONField(null=True, blank=True)
+    printed = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
+    insumos = models.JSONField(null=True, blank=True)
