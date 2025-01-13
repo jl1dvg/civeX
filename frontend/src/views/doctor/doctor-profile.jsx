@@ -52,7 +52,7 @@ const DoctorProfile = (props) => {
     }
 
     axios
-      .get(`http://127.0.0.1:8000/auth/staff/${id}/`, {
+      .get(`http://localhost:8000/auth/staff/${id}/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Obtén el token desde el localStorage
         },

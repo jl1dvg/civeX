@@ -40,7 +40,7 @@ const EditarProcedimiento = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const resp = await axios.get(`http://127.0.0.1:8000/plantillas/${id}/`, {
+                const resp = await axios.get(`http://localhost:8000/plantillas/${id}/`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
                     },
@@ -107,7 +107,7 @@ const EditarProcedimiento = () => {
                 formToSend.append("imagen_link", formData.imagenFile);
             }
 
-            await axios.put(`http://127.0.0.1:8000/plantillas/editar/${id}/`, formToSend, {
+            await axios.put(`http://localhost:8000/plantillas/editar/${id}/`, formToSend, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("access_token")}`,
                     "Content-Type": "multipart/form-data",

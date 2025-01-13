@@ -14,7 +14,7 @@ const EditDoctor = () => {
   // Obtener los datos del doctor desde el backend
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/auth/staff/${id}/`, {
+      .get(`http://localhost:8000/auth/staff/${id}/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Incluye el token de acceso
         },
@@ -58,7 +58,7 @@ const EditDoctor = () => {
     }
 
     axios
-      .put(`http://127.0.0.1:8000/auth/staff/${id}/`, formData, {
+      .put(`http://localhost:8000/auth/staff/${id}/`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Incluye el token de acceso

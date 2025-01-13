@@ -29,13 +29,13 @@ const EditarKardex = () => {
             try {
                 // Obtener datos del Kardex
                 const kardexResp = await axios.get(
-                    `http://127.0.0.1:8000/plantillas/kardex/${id}/` // 'id' es ahora 'procedimiento_id'
+                    `http://localhost:8000/plantillas/kardex/${id}/` // 'id' es ahora 'procedimiento_id'
                 );
                 setMedicamentos(kardexResp.data.medicamentos || []);
 
                 // Obtener opciones de medicamentos
                 const opcionesResp = await axios.get(
-                    `http://127.0.0.1:8000/inventario/medicamentos/`
+                    `http://localhost:8000/inventario/medicamentos/`
                 );
                 setOpcionesMedicamentos(opcionesResp.data || []);
             } catch (err) {
@@ -77,7 +77,7 @@ const EditarKardex = () => {
     const handleSave = async () => {
         try {
             await axios.put(
-                `http://127.0.0.1:8000/plantillas/kardex/${id}/`,
+                `http://localhost:8000/plantillas/kardex/${id}/`,
                 {medicamentos},
                 {
                     headers: {

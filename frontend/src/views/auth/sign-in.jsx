@@ -24,19 +24,6 @@ const SignIn = () => {
     const [loginMessage, setLoginMessage] = useState(""); // Estado para el mensaje desde Django
     const navigate = useNavigate(); // Hook para redireccionar
 
-    // Obtener datos de la API de prueba en Django
-    useEffect(() => {
-        const BASE_URL = "https://sistema.consulmed.me";
-        axios
-            .get(`${BASE_URL}/api/apache-test/api/login-data/`)
-            .then((response) => {
-                setLoginMessage(response.data.message); // Establece el mensaje recibido
-            })
-            .catch((error) => {
-                console.error("Error fetching data from Django:", error);
-            });
-    }, []);
-
     // Manejar cambios en los campos del formulario
     const handleInputChange = (e) => {
         const {name, value} = e.target;
@@ -48,7 +35,7 @@ const SignIn = () => {
         e.preventDefault(); // Prevenir el comportamiento predeterminado del formulario
         try {
             // Enviar solicitud al backend
-            const response = await axios.post("http://127.0.0.1:8000/auth/login/", {
+            const response = await axios.post("http://localhost:8000/auth/login/", {
                 username: formData.username, // Se usa `username` en lugar de `email`
                 password: formData.password,
             });

@@ -40,7 +40,7 @@ const HospitalDashboardOne = () => {
     useEffect(() => {
         const fetchStaff = async () => {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/auth/staff/", {
+                const response = await axios.get("http://localhost:8000/auth/staff/", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
                     },
@@ -421,7 +421,7 @@ const HospitalDashboardOne = () => {
     useEffect(() => {
         // Llamar al endpoint del backend para obtener los seguros más frecuentes
         axios
-            .get("http://127.0.0.1:8000/api/pacientes/top-insurances/")
+            .get("http://localhost:8000/api/pacientes/top-insurances/")
             .then((response) => {
                 setTopInsurances(response.data);
             })

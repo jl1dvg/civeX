@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.contrib.auth import authenticate, get_user_model
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -12,6 +13,7 @@ from usuarios.serializers import CustomUserSerializer
 
 # Obtener el modelo de usuario actual
 User = get_user_model()
+
 
 @csrf_exempt
 def login_view(request):
@@ -64,9 +66,13 @@ class StaffListView(APIView):
 
     def get(self, request):
         try:
-            staff = CustomUser.objects.filter(especialidad="Cirujano Oftalmólogo").values(
+            # Filtrar por especialidades Cirujano Oftalmólogo y Anestesiólogo
+            staff = CustomUser.objects.filter(
+                Q(especialidad="Cirujano Oftalmólogo") | Q(especialidad="Anestesiologo")
+            ).values(
                 'id', 'first_name', 'last_name', 'email', 'subespecialidad', 'especialidad', 'profile_picture'
             )
+
             # Ajustar la URL de profile_picture para que apunte a /media/
             for member in staff:
                 if member['profile_picture']:
@@ -74,9 +80,11 @@ class StaffListView(APIView):
                     member['profile_picture'] = request.build_absolute_uri(
                         f"/media/{member['profile_picture']}"
                     )
+
             return Response(list(staff))
         except Exception as e:
             return Response({"error": str(e)}, status=500)
+
 
 class StaffDetailView(APIView):
     permission_classes = [IsAuthenticated]

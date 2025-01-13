@@ -3,7 +3,7 @@ from django.db import models
 
 class PatientData(models.Model):
     id = models.AutoField(primary_key=True)
-    hc_number = models.CharField(max_length=255)
+    hc_number = models.CharField(max_length=255, unique=True)  # <-- Añade unique=True
     fecha_caducidad = models.DateField(null=True, blank=True)
     lname = models.CharField(max_length=100, blank=True)
     lname2 = models.CharField(max_length=100, null=True, blank=True)
@@ -39,7 +39,11 @@ class ProcedimientoProyectado(models.Model):
     procedimiento_proyectado = models.TextField()
     doctor = models.CharField(max_length=255, null=True, blank=True)
     hc_number = models.ForeignKey(
-        'PatientData', on_delete=models.CASCADE, related_name='procedimientos'
+        'PatientData',
+        on_delete=models.CASCADE,
+        related_name='procedimientos',
+        db_column='hc_number',  # Especifica el nombre real de la columna en la DB
+        to_field='hc_number'  # Usa el campo 'hc_number' de PatientData para la relación
     )
 
     class Meta:

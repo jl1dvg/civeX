@@ -1,11 +1,13 @@
 from django.db import models
-from pacientes.models import PatientData
-from django.contrib.postgres.fields import JSONField
 from django.utils.timezone import now
 
 
 class ConsultaData(models.Model):
-    hc_number = models.CharField(max_length=50, null=True, blank=True)
+    hc_number = models.ForeignKey(
+        'pacientes.PatientData',
+        on_delete=models.CASCADE,
+        related_name='consultas'
+    )
     form_id = models.CharField(max_length=50, null=True, blank=True)
     fecha = models.DateField(default=now)
     motivo_consulta = models.TextField()
@@ -14,8 +16,11 @@ class ConsultaData(models.Model):
     plan = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    diagnosticos = JSONField(default=list, blank=True)
-    examenes = JSONField(default=list, blank=True)
+    diagnosticos = models.JSONField(null=True, blank=True)  # Cambiado aquí
+    examenes = models.JSONField(null=True, blank=True)  # Cambiado aquí
+
+    class Meta:
+        db_table = 'consulta_data'
 
     class Meta:
         db_table = 'consulta_data'

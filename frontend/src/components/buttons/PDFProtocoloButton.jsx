@@ -7,7 +7,7 @@ const PDFProtocoloButton = ({hcNumber, formId}) => {
 
         try {
             const response = await axios.get(
-                `http://127.0.0.1:8000/protocolos/generate_pdf_data/?hc_number=${hc_number}&form_id=${form_id}`,
+                `http://localhost:8000/protocolos/generate_pdf_data/?hc_number=${hc_number}&form_id=${form_id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("access_token")}`,

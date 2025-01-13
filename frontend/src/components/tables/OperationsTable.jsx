@@ -12,7 +12,7 @@ const OperationsTable = () => {
         const fetchProtocolos = async () => {
             try {
                 const response = await axios.get(
-                    "http://127.0.0.1:8000/protocolos/list/",
+                    "http://localhost:8000/protocolos/list/",
                     {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -58,7 +58,7 @@ const OperationsTable = () => {
                                 </td>
                             </tr>
                         ) : protocolos.length > 0 ? (
-                            protocolos.map((protocolo, index) => (
+                            protocolos.slice(0, 5).map((protocolo, index) => (
                                 <tr key={index}>
                                     <td className="text-center">{protocolo.patient_name}</td>
                                     <td className="text-center">

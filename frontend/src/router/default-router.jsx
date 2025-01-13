@@ -21,10 +21,12 @@ import EditDoctor from "../views/doctor/edit-doctor";
 import DoctorList from "../views/doctor/doctor-list";
 import {path} from "@amcharts/amcharts4/core";
 import ProcedimientosPage from "../views/protocolos/ProcedimientosPage.jsx";
+import ProtocolosTable from "../views/protocolos/ProtocolosList.jsx";
 import EditarProcedimiento from "../views/protocolos/EditarProcedimiento.jsx";
 import EditarEvolucion from "../views/protocolos/EditarEvolucion.jsx";
 import EditarKardex from "../views/protocolos/EditarKardex.jsx";
 import EditarInsumos from "../views/protocolos/EditarInsumos.jsx";
+import PatientTable from "../views/patients/patients_list.jsx";
 
 // Default Routes (Protegidas por el token de sesión)
 export const DefaultRoute = [
@@ -81,6 +83,10 @@ export const DefaultRoute = [
                 element: <ProcedimientosPage/>,
             },
             {
+                path: "/protocolos/ProtocolosList",
+                element: <ProtocolosTable/>,
+            },
+            {
                 path: "/protocolos/EditarProcedimiento/:id",
                 element: <EditarProcedimiento/>
             },
@@ -96,6 +102,10 @@ export const DefaultRoute = [
                 path: "/protocolos/EditarInsumos/:id",
                 element: <EditarInsumos/>
             },
+            {
+                path: "/patients/patients_list",
+                element: <PatientTable/>
+            }
         ],
     },
 ];

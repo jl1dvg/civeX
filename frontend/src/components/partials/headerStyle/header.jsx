@@ -133,7 +133,7 @@ const Header = () => {
       return;
     }
 
-    fetch("http://127.0.0.1:8000/auth/user-profile/", {
+    fetch("http://localhost:8000/auth/user-profile/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

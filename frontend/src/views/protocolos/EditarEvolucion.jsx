@@ -22,7 +22,7 @@ const EditarEvolucion = () => {
   useEffect(() => {
     const fetchEvolucion = async () => {
       try {
-        const resp = await axios.get(`http://127.0.0.1:8000/plantillas/evolucion/${id}/`, {
+        const resp = await axios.get(`http://localhost:8000/plantillas/evolucion/${id}/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`
           }
@@ -58,7 +58,7 @@ const EditarEvolucion = () => {
     e.preventDefault();
     try {
       await axios.put(
-        `http://127.0.0.1:8000/plantillas/evolucion/${id}/`,
+        `http://localhost:8000/plantillas/evolucion/${id}/`,
         formData,
         {
           headers: {

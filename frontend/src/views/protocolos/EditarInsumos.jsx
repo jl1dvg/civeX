@@ -18,10 +18,10 @@ const EditarInsumos = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const insumosResp = await axios.get(`http://127.0.0.1:8000/plantillas/insumos/${id}/`);
+                const insumosResp = await axios.get(`http://localhost:8000/plantillas/insumos/${id}/`);
                 setInsumos(insumosResp.data.insumos || {});
 
-                const opcionesResp = await axios.get(`http://127.0.0.1:8000/plantillas/insumos-disponibles/`);
+                const opcionesResp = await axios.get(`http://localhost:8000/plantillas/insumos-disponibles/`);
                 setOpcionesInsumos(opcionesResp.data || {});
             } catch (err) {
                 console.error(err);
@@ -65,7 +65,7 @@ const EditarInsumos = () => {
     // Guardar los insumos
     const handleSave = async () => {
         try {
-            await axios.put(`http://127.0.0.1:8000/plantillas/insumos/${id}/`, {insumos});
+            await axios.put(`http://localhost:8000/plantillas/insumos/${id}/`, {insumos});
             navigate("/protocolos/ProcedimientosPage");
         } catch (err) {
             console.error(err);
